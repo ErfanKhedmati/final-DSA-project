@@ -3,6 +3,8 @@ const routes = {
     "/login": "pages/login.html"
 }
 
+import { initLogin } from "./login.js";
+
 export default async function router (path) {
     if(!path) path = window.location.pathname;
     
@@ -10,4 +12,10 @@ export default async function router (path) {
     
     const html = await fetch(page).then(res=>res.text());
     document.getElementById("app").innerHTML = html;
+
+    switch (path) {
+        case "/login":
+            initLogin();
+            break;
+    }
 }
